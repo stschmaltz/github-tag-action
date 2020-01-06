@@ -119,19 +119,21 @@ async function run() {
 
     const octokit = new GitHub(core.getInput("github_token"));
 
-    core.debug(`Pushing new tag to the repo`);
 
     if (createAnnotatedTag) {
       core.debug(`Creating annotated tag`);
 
-      await octokit.git.createTag({
+      const tagCreateResponse = await octokit.git.createTag({
         ...context.repo,
         tag: newTag,
         message: newTag,
         object: GITHUB_SHA,
         type: "commit"
       });
+
+      core.debug(`tagCreateResponse: ${tagCreateResponse}`);
     }
+    core.debug(`Pushing new tag to the repo`);
 
     await octokit.git.createRef({
       ...context.repo,
