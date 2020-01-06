@@ -131,7 +131,7 @@ async function run() {
         type: "commit"
       });
 
-      core.debug(`tagCreateResponse: ${tagCreateResponse}`);
+      core.debug(`tagCreateResponse: ${JSON.stringify(tagCreateResponse)}`);
     }
     core.debug(`Pushing new tag to the repo`);
 
