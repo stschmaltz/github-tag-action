@@ -124,14 +124,8 @@ async function run() {
     if (createAnnotatedTag) {
       core.debug(`Creating annotated tag`);
 
-      const [owner, repository] = GITHUB_REPOSITORY!.split("/");
-      
-      core.debug(`owner: ${owner}`);
-      core.debug(`repository ${repository}`);
-
       await octokit.git.createTag({
-        owner: owner,
-        repo: repository,
+        ...context.repo,
         tag: newTag,
         message: newTag,
         object: GITHUB_SHA,
