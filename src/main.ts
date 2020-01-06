@@ -132,6 +132,12 @@ async function run() {
       });
 
       core.debug(`tagCreateResponse: ${JSON.stringify(tagCreateResponse)}`);
+      core.debug(`status: ${(tagCreateResponse.status)}`);
+      core.debug(`message: ${(tagCreateResponse.data.message)}`);
+      core.debug(`object: ${(tagCreateResponse.data.object)}`);
+      core.debug(`sha: ${(tagCreateResponse.data.sha)}`);
+      core.debug(`verification: ${(tagCreateResponse.data.verification)}`);
+      core.debug(`url: ${(tagCreateResponse.data.url)}`);
     }
     core.debug(`Pushing new tag to the repo`);
 
