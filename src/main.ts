@@ -130,7 +130,6 @@ async function run() {
         type: "commit"
       });
 
-      core.debug(`tagCreateResponse: ${JSON.stringify(tagCreateResponse)}`);
       core.debug(`Pushing annotated tag to the repo`);
 
       await octokit.git.createRef({
