@@ -46,7 +46,7 @@ async function run() {
     const releaseBranches = core.getInput("release_branches");
     const createAnnotatedTag = core.getInput("create_annotated_tag");
 
-    const { GITHUB_REF, GITHUB_SHA, GITHUB_REPOSITORY } = process.env;
+    const { GITHUB_REF, GITHUB_SHA } = process.env;
 
     if (!GITHUB_REF) {
       core.setFailed("Missing GITHUB_REF");
@@ -55,10 +55,6 @@ async function run() {
 
     if (!GITHUB_SHA) {
       core.setFailed("Missing GITHUB_SHA");
-      return;
-    }
-    if (createAnnotatedTag && !GITHUB_REPOSITORY) {
-      core.setFailed("Missing GITHUB_REPOSITORY");
       return;
     }
 
@@ -119,7 +115,7 @@ async function run() {
 
     const octokit = new GitHub(core.getInput("github_token"));
 
-    if (createAnnotatedTag) {
+    if (createAnnotatedTag === "true") {
       core.debug(`Creating annotated tag`);
 
       const tagCreateResponse = await octokit.git.createTag({
